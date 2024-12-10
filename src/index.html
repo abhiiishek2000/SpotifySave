@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta Tags -->
+    <title>Spotify Music Downloader - Convert and Download Spotify Songs to MP3</title>
+    <meta name="title" content="Spotify Music Downloader to MP3 - Free Spotify Downloader">
+    <meta name="description"
+          content="Convert and download Spotify songs, playlists & albums to MP3 320kbps. Free Spotify Music Downloader ✓ No Registration ✓ High Quality ✓ Fast Downloads">
+    <meta name="keywords"
+          content="spotify downloader online, spotify downloader mp3, spotify downloader playlist, spotify album downloader, spotify playlist downloader, spotify downloader online free, spotify downloader online 320kbps">
+    <meta name="author" content="SpotifySave">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon -->
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='11' fill='%231DB954'/><path fill='white' d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'/></svg>">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://spotifysave.com/">
+    <meta property="og:title" content="Spotify Music Downloader - Download Songs, Albums & Playlists">
+    <meta property="og:description"
+          content="Free online tool to download Spotify music in high quality MP3 format. Convert songs, albums, and playlists with 320kbps quality.">
+    <meta property="og:image" content="https://spotifysave.com/images/spotifysave.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Spotify Music Downloader - Download Songs to MP3">
+    <meta name="twitter:description"
+          content="Free online tool to download Spotify music in high quality MP3 format. Convert songs, albums, and playlists with 320kbps quality.">
+    <meta name="twitter:image" content="https://spotifysave.com/images/spotifysave.webp">
+
+    <!-- Mobile Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#1DB954">
+    <!-- Google Console --->
+    <meta name="google-site-verification" content="CRUHbAWlZPai7gCtxZOKhQQ3UrKgJWAH2bEvk4tXYjY"/>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "SpotifySave",
+            "image": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='11' fill='%231DB954'/><path fill='white' d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z'/></svg>",
+            "alternateName": "Spotify Music Downloader",
+            "description": "Free online tool to download and convert Spotify music to MP3 format with high quality 320kbps audio",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Any",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "features": [
+                "320kbps MP3 Downloads",
+                "Playlist Downloads",
+                "Album Downloads",
+                "No Registration Required",
+                "Free Service"
+            ],
+            "browserRequirements": "Requires HTML5 support",
+            "permissions": "No special permissions required",
+            "url": "https://spotifysave.com"
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+<body>
+<nav class="header">
+    <a href="/" class="logo">
+        <div class="logo-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+            </svg>
+        </div>
+        <h1 class="logo-text">SpotifySave</h1>
+    </a>
+</nav>
+
+<main class="container">
+    <h2 class="main-title">Spotify Downloader</h2>
+
+    <section class="input-container">
+        <div class="url-input-group">
+            <input type="text" id="url-input" class="url-input"
+                   placeholder="https://open.spotify.com/..../...">
+            <button class="paste-btn">Paste</button>
+        </div>
+        <button id="download-btn" class="download-btn">Download</button>
+    </section>
+
+    <div id="loading-spinner" class="spinner"></div>
+
+    <section id="track-info">
+        <div class="track-content">
+            <img id="track-image" class="track-image" alt="Album Art">
+            <div class="track-details">
+                <h3 id="track-title" class="track-title"></h3>
+                <p id="track-artist"></p>
+                <button id="download-track" class="download-btn mt-4">Download Track</button>
+                <div id="progress-bar" class="progress-container">
+                    <div class="progress"></div>
+                    <span class="progress-text">Processing...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+    <div class="stat-item">
+        <div id="download-counter" class="stat-number">0</div>
+        <div class="stat-label">Downloads</div>
+    </div>
+    <div class="stat-item">
+        <div id="success-rate" class="stat-number">99%</div>
+        <div class="stat-label">Success Rate</div>
+    </div>
+    <div class="stat-item">
+        <div id="uptime" class="stat-number">24/7</div>
+        <div class="stat-label">Working</div>
+    </div>
+</div>
+    </section>
+
+    <!-- Tutorial Section -->
+
+    <section class="tutorial">
+        <h3 class="tutorial-title">How to Use SpotifySave?</h3>
+
+        <div class="download-steps">
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <div class="step-content">
+                    <h4>Open Spotify</h4>
+                    <p>Launch your Spotify application or visit open.spotify.com</p>
+                    <img src="/images/spotify-app.webp" alt="Spotify Application Interface" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <div class="step-content">
+                    <h4>Find Your Music</h4>
+                    <p>Search for your favorite song, album, or playlist</p>
+                    <img src="/images/spotify-search.webp" alt="Spotify Search Interface" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <div class="step-content">
+                    <h4>Copy Link</h4>
+                    <p>Click the three dots (⋮) → Share → Copy Link</p>
+                    <img src="/images/spotify-share.webp" alt="Spotify Share Button Location" class="step-image">
+                </div>
+            </div>
+
+            <div class="step-item">
+                <span class="step-number">4</span>
+                <div class="step-content">
+                    <h4>Paste & Download</h4>
+                    <p>Paste the link above and click Download button</p>
+                    <img src="/images/spotifysave.webp" alt="SpotifySave Download Interface" class="step-image">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="tutorial">
+        <h3 class="tutorial-title">How to Download on Mobile</h3>
+
+        <div class="download-steps">
+            <!-- Step 1 -->
+            <div class="step-item">
+                <span class="step-number">1</span>
+                <div class="step-content">
+                    <h4>Open Spotify Mobile App</h4>
+                    <p>Open your Spotify app on your iOS or Android device</p>
+                    <img src="/images/spotify_mobile_share.webp" alt="Spotify Mobile App Interface" class="step-image">
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-item">
+                <span class="step-number">2</span>
+                <div class="step-content">
+                    <h4>Share Your Music</h4>
+                    <p>Tap the three dots (...) → Share → Copy Link</p>
+                    <img src="/images/spotify-app-copy.webp" alt="Spotify Mobile Share Interface" class="step-image">
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-item">
+                <span class="step-number">3</span>
+                <div class="step-content">
+                    <h4>Open SpotifySave</h4>
+                    <p>Open your mobile browser and visit <a href="https://spotifysave.com/">SpotifySave</a> website</p>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-item">
+                <span class="step-number">4</span>
+                <div class="step-content">
+                    <h4>Download Your Music</h4>
+                    <p>Tap the paste button to insert your link, then click download</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <h2 class="section-title">The Ultimate Spotify Downloader Online</h2>
+
+    <div class="download-steps">
+        <div class="step-item">
+            <span class="step-number">📥</span>  <!-- Download icon -->
+            <div class="step-content">
+                <h4>Spotify Playlist Downloader</h4>
+                <p>Download entire Spotify playlists with our advanced playlist downloader. Perfect for saving your
+                    curated collections in high-quality MP3 format for offline listening.</p>
+            </div>
+        </div>
+
+        <div class="step-item">
+            <span class="step-number">💿</span>  <!-- Album icon -->
+            <div class="step-content">
+                <h4>Spotify Album Downloader</h4>
+                <p>Convert complete albums to MP3 with our Spotify album downloader. Maintain your music collection in
+                    pristine 320kbps quality, organized exactly how you like it.</p>
+            </div>
+        </div>
+
+        <div class="step-item">
+            <span class="step-number">🎵</span>  <!-- Music note icon -->
+            <div class="step-content">
+                <h4>Premium Quality Downloads</h4>
+                <p>Experience premium audio with our Spotify downloader online 320kbps quality service. Download
+                    unlimited songs with the highest audio quality.</p>
+            </div>
+        </div>
+
+        <div class="step-item">
+            <span class="step-number">📺</span>  <!-- Video icon -->
+            <div class="step-content">
+                <h4>YouTube Spotify Integration</h4>
+                <p>Our platform combines the best of both worlds, functioning as both a Spotify and YouTube Spotify
+                    downloader, ensuring you always get the highest quality audio source.</p>
+            </div>
+        </div>
+
+        <div class="step-item">
+            <span class="step-number">📱</span>  <!-- Mobile icon -->
+            <div class="step-content">
+                <h4>Mobile Optimization</h4>
+                <p>While our Spotify downloader online service works perfectly on all devices, we've optimized the
+                    platform for mobile browsers, providing the same high-quality experience as desktop.</p>
+            </div>
+        </div>
+
+        <div class="step-item">
+            <span class="step-number">🎁</span>  <!-- Free gift icon -->
+            <div class="step-content">
+                <h4>Free Forever</h4>
+                <p>Our Spotify downloader online free service requires no registration and has no hidden costs. Download
+                    unlimited songs, albums, and playlists completely free.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section">
+        <h2 class="section-title">Why Choose SpotifySave?</h2>
+        <div class="choose-grid">
+            <div class="choose-item">
+                <div class="choose-icon">🎵</div>
+                <div class="choose-content">
+                    <h3>Premium Quality</h3>
+                    <p>Crystal clear 320kbps audio quality for perfect sound</p>
+                </div>
+            </div>
+
+            <div class="choose-item">
+                <div class="choose-icon">⚡</div>
+                <div class="choose-content">
+                    <h3>Lightning Fast</h3>
+                    <p>Instant downloads with our optimized servers</p>
+                </div>
+            </div>
+
+            <div class="choose-item">
+                <div class="choose-icon">🔒</div>
+                <div class="choose-content">
+                    <h3>Secure Downloads</h3>
+                    <p>100% safe and secure downloading process</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2 class="section-title">FAQs</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3>Is SpotifySave Free?</h3>
+                <p>Yes! Our service is completely free with no hidden charges.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How Fast are Downloads?</h3>
+                <p>Most downloads complete within seconds of processing.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is it Safe?</h3>
+                <p>We use industry-standard security for safe downloads.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Audio Quality?</h3>
+                <p>We provide high-quality 320kbps MP3 files.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="disclaimer-section">
+        <div class="container">
+            <h2 class="disclaimer-title">Disclaimer</h2>
+            <p>
+                SpotifySave is an independent platform and is not affiliated with or endorsed by Spotify AB. The use of
+                the name "Spotify" on this site is solely for contextual purposes and does not imply any ownership or
+                endorsement. The name "Spotify" remains the property of its copyright holder.
+            </p>
+            <p>
+                SpotifySave does not host any copyrighted material. Our platform utilizes third-party services to
+                achieve its intended goals. Any reference to specific songs, artists, or copyrighted content is for
+                informational and contextual purposes only.
+            </p>
+            <p>
+                We respect the intellectual property rights of copyright holders. If you believe that your copyrighted
+                work is being used on <a href="https://spotifysave.com/">SpotifySave</a> in a way that constitutes
+                copyright infringement, please contact us,
+                and we will promptly address any valid concerns.
+            </p>
+            <p>
+                By using SpotifySave, you acknowledge and agree to the terms of this disclaimer. We encourage users to
+                comply with Spotify's terms of service and all relevant copyright laws when using our platform.
+            </p>
+        </div>
+    </section>
+
+    <div id="status"></div>
+</main>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="/privacy">Privacy Policy</a>
+            <span class="divider">|</span>
+            <a href="/terms">Terms & Conditions</a>
+            <span class="divider">|</span>
+            <a href="/changelog">Changelog</a>
+            <span class="divider">|</span>
+        </div>
+        <p class="copyright">© 2024 SpotifySave. All rights reserved.</p>
+    </div>
+</footer>
+<!-- Before closing </body> tag -->
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics-compat.js"></script>
+
+<!-- Your app scripts -->
+<script src="js/firebase-config.js"></script>
+<script src="js/download-counter.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

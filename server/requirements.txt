@@ -1,0 +1,4 @@
+flask==2.0.1
+requests==2.26.0
+beautifulsoup4==4.9.3
+yt-dlp==2023.3.4
