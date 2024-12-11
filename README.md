@@ -80,7 +80,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## 📞 Support
 
-For support, email support@spotifysave.com or create an issue in this repository.
+For support, email spotifysaveorg@gmail.com or create an issue in this repository.
 
 
 ---
